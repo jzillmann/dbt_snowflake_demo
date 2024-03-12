@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: snowflake_account_usage
+    database: SNOWFLAKE
+    schema: ACCOUNT_USAGE
+    tables:
+      - name: query_history
+        description: "Staging source for Snowflake's account_usage.query_history view"

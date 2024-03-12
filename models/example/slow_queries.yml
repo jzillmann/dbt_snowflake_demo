@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: slow_queries
+    description: "All queries in Snowflakes query history that took 5+min"

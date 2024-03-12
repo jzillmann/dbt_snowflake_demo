@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: stg_query_history
+    description: An incrementally materialized copy of the snowflake.account_usage.query_history view. It can be used to query Snowflake query history by various dimensions (time range, session, user, warehouse, etc.) within the last 365 days (1 year). It contains 1 row per query (query_id).
+    columns:
+      - name: query_id
+        description: Internal/system-generated identifier for the SQL statement.
+      - name: query_text
+        description: Text of the SQL statement.
+      - name: query_type
+        description: DML, query, etc. If the query failed, then the query type may be UNKNOWN.
+      - name: database_name
+        description: Database that was in use at the time of the query.
+      - name: schema_name
+        description: Schema that was in use at the time of the query.
+      - name: user_name
+        description: User who issued the query.
+      - name: role_name
+        description: Internal/system-generated identifier for the warehouse that was used.
+      - name: warehouse_name
+        description: Warehouse that the query executed on, if any.
+      - name: warehouse_size
+        description: Size of the warehouse when this statement executed.
+      - name: execution_status
+        description: "Execution status for the query. Valid values: `success`, `fail`, `incident`."
+      - name: error_code
+        description: Error code, if the query returned an error.
+      - name: error_message
+        description: Error message, if the query returned an error.
+      - name: start_time
+        description: Statement start time (in the UTC time zone). The table is naturally clustered on this column, meaning your queries will run much faster if you filter records using this column.
+      - name: end_time
+        description: Statement end time (in the UTC time zone).
+      - name: total_elapsed_time
+        description: Elapsed time (in milliseconds).
